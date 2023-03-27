@@ -1,5 +1,6 @@
 import React from 'react'
 import "../Component/Shop.css"
+import Product from '../Product/Product';
 const Shop = () => {
     const [products,setProducts]=React.useState([]);
     React.useEffect(()=>{
@@ -16,7 +17,17 @@ const Shop = () => {
   return (
     <div className='shop-container'>
       <div className='products_container'>
-       <h2>Product comming Here{products.length}</h2>
+       {
+       products.map((product)=>{
+        return(
+          <div>
+           <Product 
+           key={product.id}
+           product={product}/>
+          </div>
+        )
+       })
+       }
       </div>
       <div className='cart-container'>
       <h4>Order sum,ary</h4>
