@@ -43,8 +43,22 @@ const Shop = () => {
    },[products])
 
     const handledToCart=(product)=>{
-      console.log('Product has added',product)
-      const newCart=[...cart,product];
+      // console.log('Product has added',product)
+      // const newCart=[...cart,product];
+      let newCart=[];
+      const exitst=cart.find((pd)=>{
+        return pd.id===product.id
+      })
+      if(!exitst){
+        product.quantity=1;
+        newCart=[...cart,product]
+      }else{
+        exitst.quantity=exitst.quantity+1;
+        const remaining=cart.filter((pd)=>{
+          return pd.id !==product.id;
+          newCart=[...remaining,exitst]
+        })
+      }
       setCart(newCart);
       addToDb(product.id)
     }
