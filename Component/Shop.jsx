@@ -3,6 +3,7 @@ import "../Component/Shop.css"
 import Product from '../Product/Product';
 const Shop = () => {
     const [products,setProducts]=React.useState([]);
+    const [cart,setCart]=React.useState([]);
     React.useEffect(()=>{
       LoadingProductData();
     },[])
@@ -13,7 +14,12 @@ const Shop = () => {
         console.log(data)
      })
     }
-
+ 
+    const handledToCart=(product)=>{
+      console.log('Product has added',product)
+      const newCart=[...cart,product];
+      setCart(newCart);
+    }
   return (
     <div className='shop-container'>
       <div className='products_container'>
@@ -23,7 +29,9 @@ const Shop = () => {
           <div>
            <Product 
            key={product.id}
+           handledToCart={handledToCart}
            product={product}/>
+          
           </div>
         )
        })
@@ -31,6 +39,7 @@ const Shop = () => {
       </div>
       <div className='cart-container'>
       <h4>Order sum,ary</h4>
+      <p>Selected Item :{cart.length}</p>
       </div>
     </div>
   )

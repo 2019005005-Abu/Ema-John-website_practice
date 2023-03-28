@@ -53,6 +53,7 @@ position: relative;
     align-items: center;
     justify-content: center;
     bottom: 0;
+    gap: 15px;
 }
 
 .btn{
